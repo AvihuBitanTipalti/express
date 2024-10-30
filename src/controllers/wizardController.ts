@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { fetchGreeting } from "../services/wizardService";
+import { fetchGreeting, fetchProtected } from "../services/wizardService";
 
 export const getGreeting = (req: Request, res: Response) => {
   const greeting = fetchGreeting();
@@ -7,7 +7,8 @@ export const getGreeting = (req: Request, res: Response) => {
 };
 
 export const getProtected = (req: Request, res: Response) => {
-  res.send("Welcome to the protected wizard area!");
+  const protect = fetchProtected();
+  res.send(protect);
 };
 export const getError = (req: Request, res: Response) => {
   throw new Error("This is a simulated error for testing the error handler.");
